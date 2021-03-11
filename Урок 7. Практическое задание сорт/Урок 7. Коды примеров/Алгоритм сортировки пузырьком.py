@@ -1,0 +1,33 @@
+"""Сортировка пузырьком"""
+
+import timeit
+import random
+
+
+def bubble_sort(lst_obj):
+    n = 1
+    while n < len(lst_obj):
+        for i in range(len(lst_obj)-n):
+            if lst_obj[i] > lst_obj[i+1]:
+                lst_obj[i], lst_obj[i+1] = lst_obj[i+1], lst_obj[i]
+        n += 1
+    return lst_obj
+
+
+orig_list = [random.randint(-100, 100) for _ in range(10)]
+
+# замеры 10
+print(timeit.timeit("bubble_sort(orig_list)", \
+    setup="from __main__ import bubble_sort, orig_list", number=1))
+
+orig_list = [random.randint(-100, 100) for _ in range(100)]
+
+# замеры 100
+print(timeit.timeit("bubble_sort(orig_list)", \
+    setup="from __main__ import bubble_sort, orig_list", number=1))
+
+orig_list = [random.randint(-100, 100) for _ in range(1000)]
+
+# замеры 1000
+print(timeit.timeit("bubble_sort(orig_list)", \
+    setup="from __main__ import bubble_sort, orig_list", number=1))
